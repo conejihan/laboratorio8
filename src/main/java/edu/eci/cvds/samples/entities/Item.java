@@ -35,9 +35,6 @@ public class Item implements Serializable{
 
     public Item() {
     }
-
-    
-    
     
     public TipoItem getTipo() {
         return tipo;
@@ -54,8 +51,6 @@ public class Item implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
-
-
 
     public String getNombre() {
         return nombre;
@@ -109,10 +104,4 @@ public class Item implements Serializable{
     public String toString() {
         return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + nombre + ", tarifaxDia=" + tarifaxDia + '}';
     }
-
-
-    
-    
-    
-    
 }

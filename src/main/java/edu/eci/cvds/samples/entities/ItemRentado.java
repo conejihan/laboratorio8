@@ -66,7 +66,4 @@ public class ItemRentado implements Serializable {
     public String toString() {
         return "ItemRentado{" + "id=" + id + ", item=" + item + ", fechainiciorenta=" + fechainiciorenta + ", fechafinrenta=" + fechafinrenta + '}';
     }
-
-    
-    
 }

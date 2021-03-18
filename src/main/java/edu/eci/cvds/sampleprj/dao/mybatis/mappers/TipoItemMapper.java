@@ -7,12 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import edu.eci.cvds.samples.entities.TipoItem;
 
 public interface TipoItemMapper {
-    
-    
-    public List<TipoItem> getTiposItems();
-    
-    public TipoItem getTipoItem(int id);
-    
-    public void addTipoItem(String des);
-
+    List<TipoItem> getTiposItems();
+    TipoItem getTipoItem(int id);
+    void addTipoItem(String des);
 }

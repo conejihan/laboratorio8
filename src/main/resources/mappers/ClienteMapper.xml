@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
-    <select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
+
+	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
 		select
 		c.nombre,
 	    c.documento,
@@ -12,27 +13,56 @@
 	    c.direccion,
 	    c.email,
 	    c.vetado,
-	    
-	    ir.id as item_id ,
-	    ir.fechainiciorenta as item_fechainiciorenta,
-	    ir.fechafinrenta as item_fechafinrenta,
-	    
-	    i.id as item_i_id,
-	    i.nombre as item_i_nombre,
-	    i.descripcion  item_i_descripcion,
-	    i.fechalanzamiento  item_i_fechalanzamiento,
-	    i.tarifaxdia item_i_tarifaxdia,
-	    i.formatorenta item_i_formatorenta,
-	    i.genero item_i_genero,        
-	    ti.id item_i_tipo_id,
-	    ti.descripcion as item_i_tipo_descripcion	    
-	    FROM VI_CLIENTES as c 
-	    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
-	    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
-	    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
-	</select>	
-	
-	
+
+	    ir.id as itemrentado_id ,
+	    ir.fechainiciorenta itemrentado_fechainiciorenta,
+	    ir.fechafinrenta itemrentado_fechafinrenta,
+
+	    i.id as itemrentado_item_id,
+	    i.nombre itemrentado_item_nombre,
+	    i.descripcion itemrentado_item_descripcion,
+	    i.fechalanzamiento itemrentado_item_fechalanzamiento,
+	    i.tarifaxdia itemrentado_item_tarifaxdia,
+	    i.formatorenta itemrentado_item_formatorenta,
+	    i.genero itemrentado_item_genero,
+	    ti.id itemrentado_item_tipoitem_id,
+	    ti.descripcion as itemrentado_item_tipoitem_descripcion
+	    FROM VI_CLIENTES as c
+	    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento
+	    left join VI_ITEMS as i on ir.ITEMS_id=i.id
+	    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+	</select>
+	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
+		select
+		c.nombre,
+	    c.documento,
+	    c.telefono,
+	    c.direccion,
+	    c.email,
+	    c.vetado,
+	    ir.id as itemrentado_id ,
+	    ir.fechainiciorenta itemrentado_fechainiciorenta,
+	    ir.fechafinrenta itemrentado_fechafinrenta,
+	    i.id as itemrentado_item_id,
+	    i.nombre itemrentado_item_nombre,
+	    i.descripcion itemrentado_item_descripcion,
+	    i.fechalanzamiento itemrentado_item_fechalanzamiento,
+	    i.tarifaxdia itemrentado_item_tarifaxdia,
+	    i.formatorenta itemrentado_item_formatorenta,
+	    i.genero itemrentado_item_genero,
+	    ti.id itemrentado_item_tipoitem_id,
+	    ti.descripcion as itemrentado_item_tipoitem_descripcion
+	    FROM VI_CLIENTES as c
+	    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento
+	    left join VI_ITEMS as i on ir.ITEMS_id=i.id
+	    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+	    WHERE c.documento = #{idcli}
+	</select>
+
+	<insert parameterType="map" id="agregarItemRentadoACliente">
+    	insert into VI_ITEMRENTADO(CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta) values(#{idcli},#{iditem},#{fechinicio},#{fechfin})
+    </insert>
+
 	<resultMap type='Cliente' id='ClienteResult'>
 		<id property='documento' column='documento'/>
 		<result property='nombre' column='nombre'/>
@@ -40,10 +70,7 @@
 		<result property='direccion' column='direccion'/>
 		<result property='email' column='email'/>
 		<result property='vetado' column='vetado'/>
-		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult' columnPrefix="item_">
+		<collection property='rentados' javaType='ArrayList' ofType='ItemRentado' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult' columnPrefix="itemrentado_">
 		</collection>
 	</resultMap>
-	
-	
-	
 </mapper>
