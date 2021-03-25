@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author 2106913
+ * @author
  */
 public class Item implements Serializable{
     private TipoItem tipo;

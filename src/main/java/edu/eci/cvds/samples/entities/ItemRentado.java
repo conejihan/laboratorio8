@@ -10,7 +10,7 @@ import java.sql.Date;
 
 /**
  *
- * @author 2106913
+ * @author
  */
 public class ItemRentado implements Serializable {
 

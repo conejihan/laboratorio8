@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 /**
  *
- * @author 2106913
  */
 public class TipoItem implements Serializable{
     private int id;
