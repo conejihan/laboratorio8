@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title> Registro Cliente </title>
+</h:head>
+<h:body style="background-color: gray">
+    <div class="container">
+        <h:form id="FormularioC">
+            <p:dataTable  id="clienteDT" var="cliente" value="#{AlquilerItem.consultarClientes()}" selectionMode="single" selection="#{AlquilerItem.cliente}" rowKey="#{cliente.documento}" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" rowsPerPageTemplate="5,10,15" tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white" style="font-family: Broadway;">
+                <f:facet name="header" >
+                    Clientes
+                </f:facet>
+                <p:column headerText="Documento">
+                    <h:outputText value="#{cliente.documento}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{cliente.nombre}" />
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cliente.telefono}" />
+                </p:column>
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{cliente.direccion}" />
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{cliente.email}" />
+                </p:column>
+                <f:facet name="footer">
+                    <h:commandButton id="Clientes"  value="Ver" action="registroalquiler?faces-redirect = true" class="btn btn-primary"/>
+                </f:facet>
+            </p:dataTable>
+            <h:panelGrid columns="1" >
+                <f:facet name="header" >
+                    Registrar Cliente
+                </f:facet>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Nombre: "/>
+                    <p:inputText  id= "nombre" type="String" binding="#{nombre}"  class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Documento: " />
+                    <p:inputText  id= "documento" type="Long" binding="#{documento}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Telefono: " />
+                    <p:inputText  id= "telefono" type="String" binding="#{telefono}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Direccion: " />
+                    <p:inputText  id= "direccion" type="String" binding="#{direccion}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Email: " />
+                    <p:inputText  id= "email" type="String" binding="#{email}" class="form-control"/>
+                </div>
+                <p:commandButton  update="FormularioC" value="Registrar" actionListener="#{AlquilerItem.registrar(nombre.value,documento.value,telefono.value,direccion.value,email.value)}" class="btn btn-primary" style="position: absolute; left: 20%; top: 80%; padding: 10px; font-family: Arial,Helvetica,sans-serif; font-size: 1em; font-weight: 600; border-radius: 10px;"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>
