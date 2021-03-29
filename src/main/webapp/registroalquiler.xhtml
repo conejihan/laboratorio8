@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title> Registro Alquiler </title>
+</h:head>
+<h:body style="background-color: gray">
+    <div class="container">
+        <h:form id="FormularioA">
+            <h:panelGrid columns ="1" cellpadding="5">
+                <f:facet name="header" >
+                    Registrar Item
+                </f:facet>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Ingresar ID item" />
+                    <p:inputText  id= "item" type="String" binding="#{id}"/>
+                </div>
+                <div class="form-group">
+                    <p:outputLabel for="@next" value="Ingresar el numero de días" />
+                    <p:inputText  id= "numdias" type="String" binding="#{dias}" />
+                </div>
+                <div class="form-group">
+                    <p:outputLabel value="Costo del alquiler"/>
+                    <h:outputText value="#{AlquilerItem.getCosto()}"/>
+                </div>
+                <p:commandButton update="FormularioA" value="Registrar" action="registroCliente?faces-redirect = true" actionListener="#{AlquilerItem.registrarAlquiler(id.value,dias.value)}" class="btn btn-primary" style="position: absolute; left: 30%; top: 40%; padding: 10px; font-family: Arial,Helvetica,sans-serif; font-size: 1em; font-weight: 600; border-radius: 10px;"/>
+                <p:commandButton update="FormularioA" value="Consultar Costo" actionListener="#{AlquilerItem.consultarCosto(id.value,dias.value)}" class="btn btn-primary" style="position: absolute; left: 45%; top: 40%; padding: 10px; font-family: Arial,Helvetica,sans-serif; font-size: 1em; font-weight: 600; border-radius: 10px;"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>
