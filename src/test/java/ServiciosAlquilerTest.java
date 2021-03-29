@@ -33,11 +33,11 @@ public class ServiciosAlquilerTest {
         serviciosAlquiler = ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
     }
 
-    /* @Before
+    @Before
     public void setUp() {
-    } */
+    } 
 
-    /* @Test
+    @Test
     public void emptyDB() {
         for(int i = 0; i < 100; i += 10) {
             boolean r = false;
@@ -51,9 +51,9 @@ public class ServiciosAlquilerTest {
             // Validate no Client was found;
             Assert.assertTrue(r);
         };
-    } */
+    }
 
-    @Test
+   /* @Test
     public void noDeberiaConsultarElCostoDeUnItemDesconocido() throws ExcepcionServiciosAlquiler{
         try {
             assertEquals(101010101, serviciosAlquiler.consultarCostoAlquiler(91919191, 818181));
@@ -79,7 +79,7 @@ public class ServiciosAlquilerTest {
     @Test
     public void deberiaConsultarTarifaxDia() throws ParseException, ExcepcionServiciosAlquiler {
         try {
-            /* Cliente cliente = new Cliente("Nombre",111,"telefono","direccion","email",false,null); */
+            /* Cliente cliente = new Cliente("Nombre",111,"telefono","direccion","email",false,null);
             Item item = new Item(new TipoItem(1, "prueba" ),6,
                     "prueba", "prueba Pa", new SimpleDateFormat("yyyy/MM/dd").parse("2020/10/4"),
                     100,"prueba","prueba");
@@ -176,5 +176,5 @@ public class ServiciosAlquilerTest {
         } catch (Exception e) {
             fail(e.toString());
         }
-    }
+    }*/
 }
